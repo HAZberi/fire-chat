@@ -1,6 +1,11 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore"
 import './App.css';
 
-function App() {
+firebase.initializeApp({});
+
+const FireChat = () => {
   return (
     <div className="App">
       Welcome to Fire Chat
@@ -8,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default FireChat;
