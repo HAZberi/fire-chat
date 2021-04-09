@@ -34,6 +34,14 @@ const FireChat = () => {
     }
   };
 
+  const signOut = async () => {
+    try {
+      await firebase.auth().signOut();
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   useEffect(() => {
     const subscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -51,7 +59,11 @@ const FireChat = () => {
 
   return (
     <div className="App">
-      <Button onClick={signInWithGoogle}>Sign In With Google</Button>
+      {user ? (
+        <Button onClick={signOut}>Sign Out</Button>
+      ) : (
+        <Button onClick={signInWithGoogle}>Sign In With Google</Button>
+      )}
     </div>
   );
 };
