@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore"
+import Button from "./Button"
 import './App.css';
 
 firebase.initializeApp({
@@ -14,9 +15,24 @@ firebase.initializeApp({
 });
 
 const FireChat = () => {
+  const signInWithGoogle = async () => {
+    //fetch google auth provider
+    const googleAuth = new firebase.auth.GithubAuthProvider();
+    //set the default language
+    firebase.auth().useDeviceLanguage();
+    //start the sign in process
+    try {
+      await firebase.auth().signInWithPopup(googleAuth);
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
+  
+
   return (
     <div className="App">
-      Welcome to Fire Chat
+      <Button onClick={signInWithGoogle}>Sign In With Google</Button>
     </div>
   );
 }
