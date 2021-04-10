@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
-
 import "firebase/auth";
 import "firebase/firestore";
 import Button from "./Button";
 import "./App.css";
+import ChatBox from "./ChatBox";
 
 firebase.initializeApp({
   apiKey: "AIzaSyApOEHiPjIFKd27s4J-z0oRzMKAANFvjYU",
@@ -17,6 +17,7 @@ firebase.initializeApp({
 });
 
 const fireChatAuth = firebase.auth();
+const datatbase = firebase.firestore();
 
 const FireChat = () => {
   const [user, setUser] = useState(() => fireChatAuth.currentUser);
@@ -64,6 +65,7 @@ const FireChat = () => {
       ) : (
         <Button onClick={signInWithGoogle}>Sign In With Google</Button>
       )}
+      <ChatBox user={user} db={datatbase} />
     </div>
   );
 };
