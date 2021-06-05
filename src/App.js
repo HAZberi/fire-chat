@@ -7,7 +7,7 @@ import "./App.css";
 import ChatBox from "./ChatBox";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyApOEHiPjIFKd27s4J-z0oRzMKAANFvjYU",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "fire-chat-7274f.firebaseapp.com",
   projectId: "fire-chat-7274f",
   storageBucket: "fire-chat-7274f.appspot.com",
