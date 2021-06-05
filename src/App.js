@@ -29,7 +29,7 @@ const FireChat = () => {
     firebase.auth().useDeviceLanguage();
     //start the sign in process
     try {
-      await firebase.auth().signInWithPopup(googleAuth);
+      await fireChatAuth.signInWithPopup(googleAuth);
     } catch (err) {
       console.error(err.message);
     }
