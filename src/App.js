@@ -65,7 +65,11 @@ const FireChat = () => {
       ) : (
         <Button onClick={signInWithGoogle}>Sign In With Google</Button>
       )}
-      <ChatBox user={user} db={datatbase} />
+      {user ? (
+        <ChatBox user={user} db={datatbase} />
+      ) : (
+        <h1>Sign In To Continue</h1>
+      )}
     </div>
   );
 };

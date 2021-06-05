@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 const ChatBox = ({ user = null, db = null }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const { uid, displayName, photoUrl } = user;
+  const { uid, displayName, photoURL } = user;
 
   useEffect(() => {
     if (db) {
@@ -31,13 +31,17 @@ const ChatBox = ({ user = null, db = null }) => {
   };
 
   const handleOnSubmit = (e) => {
-    db.collection("messages").add({
-      text: newMessage,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      displayName,
-      photoUrl,
-    });
+    e.preventDefault();
+    if (newMessage) {
+      db.collection("messages").add({
+        text: newMessage,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        displayName,
+        photoURL,
+      });
+      setNewMessage("");
+    }
   };
 
   return (
